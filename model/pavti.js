@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const PavtiSchema = new Schema({
   pavti_no: {
     type: Number,
-    required,
+    required: true,
   },
   pavti_Date: {
     type: String,
