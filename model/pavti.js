@@ -23,7 +23,7 @@ const PavtiSchema = new Schema({
     default: "",
   },
   Dengidar_money: {
-    type: String,
+    type: Number,
     default: "",
   },
   Shera: {
