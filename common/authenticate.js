@@ -31,6 +31,6 @@ module.exports.verifyAdmin = async (req, res, next) => {
       String(error.name).toLowerCase() === "error"
         ? error.message
         : "UNAUTHORIZED_ACCESS";
-    res.error(401, message);
+    res.status(401).json({ message });
   }
 };

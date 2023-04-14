@@ -22,6 +22,7 @@ module.exports.getAllPavti = async (req, res) => {
 module.exports.getAPavti = async (req, res) => {
   try {
     const id = req.params.id;
+
     const getData = await Model.Pavti.find({ _id: id });
     return res.status(200).json({ msg: "SUCCESSFULL", pavti: getData });
   } catch (error) {
