@@ -61,3 +61,12 @@ module.exports.login = async (req, res, next) => {
     return res.status(400).json({ error: "ERROR_WHILE_LOGIN" });
   }
 };
+
+module.exports.getAdmin = async (req, res, next) => {
+  try {
+    let user = await Model.Admin.findOne({ _id: req.user._id });
+    return res.status(200).json({ msg: "SUCCESSFULLY FETCHED", user });
+  } catch (error) {
+    return res.status(400).json({ error: "ERROR_WHILE_RETRIVING_ADMIN" });
+  }
+};
