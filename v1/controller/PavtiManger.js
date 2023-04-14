@@ -19,7 +19,13 @@ module.exports.getAllPavti = async (req, res) => {
   }
 };
 
-module.exports.searchForBill = async (req, res) => {
+module.exports.getAPavti = async (req, res) => {
   try {
-  } catch (err) {}
+    const id = req.params.id;
+    const getData = await Model.Pavti.find({ _id: id });
+    return res.status(200).json({ msg: "SUCCESSFULL", pavti: getData });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ msg: "ERROR_WHILE_GETTING_DATA" });
+  }
 };
