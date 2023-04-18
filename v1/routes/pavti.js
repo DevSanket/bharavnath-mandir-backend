@@ -9,4 +9,16 @@ router.get(
   Auth.verifyAdmin,
   Controller.PavtiController.getAPavti
 );
+router.put(
+  "/updatePavti/:id",
+  Auth.verifyAdmin,
+  Controller.PavtiController.updatePavti
+);
+
+router.delete(
+  "/deletePavti/:id",
+  Auth.verifyAdmin,
+  Controller.PavtiController.deletePavti
+);
+
 module.exports = router;

@@ -30,3 +30,51 @@ module.exports.getAPavti = async (req, res) => {
     return res.status(400).json({ msg: "ERROR_WHILE_GETTING_DATA" });
   }
 };
+
+module.exports.updatePavti = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const {
+      pavti_no,
+      pavti_Date,
+      Dengidar_name,
+      Dengidar_money,
+      Dengidar_Address,
+      Shera,
+    } = req.body;
+
+    const updateData = await Model.Pavti.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          pavti_no,
+          pavti_Date,
+          Dengidar_name,
+          Dengidar_money,
+          Dengidar_Address,
+          Shera,
+        },
+      }
+    );
+    await updateData.save();
+
+    return res.status(200).json({ msg: "Successfull" });
+  } catch (error) {
+    return res.status(400).json({ error: "GETTING_ERROR_WHILE_UPDATE" });
+  }
+};
+
+//delete a perticular pavti
+
+module.exports.deletePavti = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const deletedPavti = await Model.Pavti.findOneAndDelete({ _id: id });
+
+    return res.status(200).json({ msg: "Successfull" });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ error: "ERROR_WHILE_DELETING_PAVTI" });
+  }
+};
