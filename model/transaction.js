@@ -2,21 +2,22 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const TransactionSchema = new Schema({
-  pavti_no: {
-    type: Number,
-    required: true,
+  money: {
+    type: mongoose.Types.Decimal128,
+    default: 0.0,
   },
-  pavti_Date: {
+  name: {
     type: String,
     default: "",
   },
-  Dengidar_name: {
+  date: {
     type: String,
     default: "",
   },
-  mobile: {
+  status: {
     type: String,
-    default: "",
+    enums: ["Income", "Expense"],
+    default: "Income",
   },
 });
 

@@ -21,4 +21,22 @@ router.delete(
   Controller.PavtiController.deletePavti
 );
 
+router.post(
+  "/expense",
+  Auth.verifyAdmin,
+  Controller.PavtiController.expenseTransaction
+);
+
+router.get(
+  "/expenses",
+  Auth.verifyAdmin,
+  Controller.PavtiController.getAllExpenses
+);
+
+router.delete(
+  "/expense/:id",
+  Auth.verifyAdmin,
+  Controller.PavtiController.deleteExpense
+);
+
 module.exports = router;

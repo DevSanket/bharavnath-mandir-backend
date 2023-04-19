@@ -3,7 +3,15 @@ const Model = require("../../model");
 module.exports.addNewBill = async (req, res) => {
   try {
     //create pavti with all required Information
-    const new_pavti = Model.Pavti.create(req.body);
+    const new_pavti = await Model.Pavti.create(req.body).save();
+    const { Dengidar_name, money, pavti_Date } = req.body;
+    const transaction = await Model.Transaction.create({
+      name: Dengidar_name,
+      money,
+      date: pavti_Date,
+      status: "Income",
+    });
+    await transaction.save();
     return res.status(200).json({ msg: "SUCCESSFULL", new_pavti });
   } catch (error) {
     return res.status(400).json({ error: "ERROR_WHILE_ADDING_PAVTI" });
@@ -76,5 +84,43 @@ module.exports.deletePavti = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(400).json({ error: "ERROR_WHILE_DELETING_PAVTI" });
+  }
+};
+
+//create a expense transaction
+
+module.exports.expenseTransaction = async (req, res) => {
+  try {
+    const expense = await Model.Expense.create(req.body);
+    await expense.save();
+    const { title, money, date } = req.body;
+    const transaction = await Model.Transaction.create({
+      name: title,
+      money,
+      status: "Expense",
+    });
+    await transaction.save();
+    return res.status(200).json({ msg: "Successfull", expense });
+  } catch (error) {
+    return res.status(400).json({ error: "ERROR_WHILE_ADDING_EXPENCE" });
+  }
+};
+
+module.exports.getAllExpenses = async (req, res) => {
+  try {
+    const expenses = await Model.Expense.find();
+    return res.status(200).json({ msg: "Successfull", expenses });
+  } catch (error) {
+    return res.status(400).json({ error: "ERROR_WHILE_GETTING_EXPENSES" });
+  }
+};
+
+module.exports.deleteExpense = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteExpense = await Model.Expense.findOneAndDelete({ _id: id });
+    return res.status(200).json({ msg: "Successfull" });
+  } catch (error) {
+    return res.status(400).json({ error: "ERROR_WHILE_DELETING_EXPENSE" });
   }
 };

@@ -19,8 +19,8 @@ const PavtiSchema = new Schema({
     default: "",
   },
   mobile: {
-    type: String,
-    default: "",
+    type: mongoose.Types.Decimal128,
+    default: 0.0,
   },
   Dengidar_money: {
     type: Number,
