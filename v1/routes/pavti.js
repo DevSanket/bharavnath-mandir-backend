@@ -39,4 +39,25 @@ router.delete(
   Controller.PavtiController.deleteExpense
 );
 
+//bank
+router.post(
+  "/bank/create",
+  Auth.verifyAdmin,
+  Controller.PavtiController.addbankMoney
+);
+
+router.delete(
+  "/bank/:id",
+  Auth.verifyAdmin,
+  Controller.PavtiController.removeBankMoney
+);
+
+router.get(
+  "/bank",
+  Auth.verifyAdmin,
+  Controller.PavtiController.getAllBankMoney
+);
+
+router.get("/getAllInfo", Controller.PavtiController.allInfo);
+
 module.exports = router;

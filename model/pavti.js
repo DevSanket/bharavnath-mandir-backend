@@ -19,14 +19,18 @@ const PavtiSchema = new Schema({
     default: "",
   },
   mobile: {
-    type: mongoose.Types.Decimal128,
+    type: String,
     default: 0.0,
   },
   Dengidar_money: {
-    type: Number,
-    default: "",
+    type: mongoose.Types.Decimal128,
+    default: 0.0,
   },
   Shera: {
+    type: String,
+    default: "",
+  },
+  transaction_id: {
     type: String,
     default: "",
   },

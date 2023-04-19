@@ -3,4 +3,5 @@ module.exports = {
   Pavti: require("./pavti"),
   Expense: require("./expense"),
   Transaction: require("./transaction"),
+  Bank: require("./bank"),
 };
